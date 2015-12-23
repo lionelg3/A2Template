@@ -1,0 +1,16 @@
+.vscode
+*.tmp
+node_modules/
+target
+.eclipse
+.classpath
+.project
+*.ipr
+*.iwj
+.idea/
+*.iml
+.DS_Store
+*.bak
+*.swp
+tmp
+
