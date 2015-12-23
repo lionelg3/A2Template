@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     ts = require('gulp-typescript'),
     sourcemaps = require('gulp-sourcemaps'),
     del = require('del'),
+    watch = require('gulp-watch'),
     shell = require('gulp-shell');
 
 var TARGET = 'target/web';
@@ -65,5 +66,13 @@ gulp.task('clean', function() {
     });
 });
 
+// Watch
+gulp.task('watch', ['copy', 'compile-dev'], function () {
+    watch(SOURCES + '/*.ts', function (events, done) {
+        console.log('Things have change : ' + events);
+        gulp.start('compile-dev');
+    });
+});
+
 gulp.task('release', ['clean', 'compile-prod', 'copy']);
-gulp.task('dev', ['compile-dev', 'copy']);
+gulp.task('dev', ['compile-dev', 'watch']);
